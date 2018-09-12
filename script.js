@@ -1,8 +1,6 @@
 //"use strict";
 
-document.addEventListener("DOMContentLoaded", fetchStudents);
-
-let template = document.querySelector("#temp").content;
+//let template = document.querySelector("#temp").content;
 
 let students = [];
 //fetch
@@ -14,13 +12,15 @@ function fetchStudents() {
 
 function createList(data) {
   const names = Object.values(data);
-  console.log(names);
+  //console.log(names);
 
   data.forEach(person => {
     let temp = Object.create(studentTemp);
     temp.splitName(person);
     students.push(temp);
   });
+
+  console.table(students);
 
   const byFirstName = students.sort(sortByFirstName); //sort students by first name
   show(byFirstName, "#studentName"); //run function show(), which displays the sorted list by first name
@@ -46,9 +46,9 @@ function sortByLastName(a, b) {
 
 function show(data, selector) {
   data.forEach(person => {
-    const li = document.createElement("li"); //creates listed items for each of the persons
-    li.textContent = person; //adds text content from person into the li (the names and house)
-    document.querySelector(selector).appendChild(li); //append the data into #first and #last in html
+    const h1 = document.createElement("h1"); //creates listed items for each of the persons
+    h1.textContent = person; //adds text content from person into the li (the names and house)
+    document.querySelector(selector).appendChild(h1); //append the data into #first and #last in html
   });
 }
 
