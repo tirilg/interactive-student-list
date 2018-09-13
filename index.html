@@ -10,20 +10,81 @@
 </head>
 
 <body>
-    <article class="student">
-        <div class="wrap">
-            <img src="img/person.png">
-            <h1 id="studentName">Student name</h1>
+
+    <section id="buttons">
+        <div id="sorting">
+            Sort by:
+            <button id="sort_first">First name</button>
+            <button id="sort_middle">Middle name</button>
+            <button id="sort_last">Last name</button>
+        </div>
+    </section>
+
+    <table id="student_list">
+        <thead>
+            <tr>
+                <th>First name</th>
+                <th>Middle name</th>
+                <th>Last name</th>
+                <th>Info</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Harry</td>
+                <td>Potter</td>
+                <td>Gryffindor</td>
+                <td><button>Info</button></th>
+                    <td><button>Delete</button></td>
+            </tr>
+            <tr>
+                <td>Ron</td>
+                <td>Weasley</td>
+                <td>Gryffindor</td>
+                <td><button>Info</button></td>
+                <td><button>Delete</button></td>
+            </tr>
+            <tr>
+                <td>Draco</td>
+                <td>Malfoy</td>
+                <td>Slytherin</td>
+                <td><button>Info</button></td>
+                <td><button>Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <!--<article id="student_list">
+
+    </article>-->
+
+
+    <template id="student_template">
+
+        <!-- <div class="wrap">
+            <img src="img/person.png"> -->
+        <tr>
+            <td data-firstname>Tiril</td>
+            <td data-middlename>Key</td>
+            <td data-lastname>Grimsrud</td>
+            <td data-infobutton><button>Info</button></td>
+            <td data-deletebutton><button>Delete</button></td>
+        </tr>
+
+        <!----
             <div class="buttonWrap">
                 <button>Info</button>
                 <button>Delete</button>
             </div>
-        </div>
-    </article>
+        </div> -->
+    </template>
 
 
 
     <script src="script.js"></script>
+    <script src="frontend.js"></script>
 </body>
 
 </html>
