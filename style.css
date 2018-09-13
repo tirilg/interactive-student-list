@@ -1,6 +1,45 @@
 body {
   font-family: helvetica, sans-serif;
   background-color: lightblue;
+  margin: 0;
+}
+
+#header {
+  padding: 30px;
+}
+
+/*     ARROW     */
+
+i {
+  border: solid black;
+  border-width: 0 1px 1px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.right {
+  transform: rotate(-45deg);
+}
+
+/*       BUTTONS    */
+
+button {
+  cursor: pointer;
+}
+
+.infoBTN {
+  border: solid 1px lightgray;
+}
+#sorting button {
+  width: 20%;
+  padding: 1em;
+  margin: 20px;
+  background-color: lightblue;
+  border: solid 1px white;
+}
+#sorting button:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+  transition: 0.3s ease;
 }
 
 /*        TABLE       */
@@ -8,8 +47,8 @@ body {
 th,
 td {
   text-align: left;
-  border-bottom: 1px solid black;
-  padding: 15px;
+  border-bottom: 1px solid rgb(211, 211, 211);
+  padding: 30px;
 }
 table {
   width: 100%;
@@ -26,13 +65,29 @@ td {
 }
 
 tr:hover {
-  background-color: #f5f5f5;
+  background-color: lightgray;
 }
 tr:nth-child(even) {
   background-color: #f2f2f2;
 }
-
+tr:nth-child(even):hover {
+  background-color: lightgray;
+}
 /*        MODAL      */
+img {
+  width: 40%;
+  justify-self: right;
+  align-self: center;
+}
+.wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.wrap h1 {
+  align-self: center;
+}
+
 #modal_container {
   width: 100vw;
   height: 100vh;
@@ -54,6 +109,7 @@ tr:nth-child(even) {
   background: white;
   margin: auto;
   padding: 1.5em;
+  border: lightblue 2px solid;
 }
 
 #closebutton {
