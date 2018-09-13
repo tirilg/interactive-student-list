@@ -9,6 +9,10 @@ function initFrontend() {
   document
     .querySelector("button#sort_first")
     .addEventListener("click", clickedSortFirstname);
+
+  document
+    .querySelector("button#sort_middle")
+    .addEventListener("click", clickedSortMiddlename);
   document
     .querySelector("button#sort_last")
     .addEventListener("click", clickedSortLastname);
@@ -17,6 +21,12 @@ function initFrontend() {
 function clickedSortFirstname() {
   console.log("clickedSortFirstname");
   sortByFirstName();
+  displayList(students);
+}
+
+function clickedSortMiddlename() {
+  console.log("clickedSortMiddlename");
+  sortByMiddleName();
   displayList(students);
 }
 

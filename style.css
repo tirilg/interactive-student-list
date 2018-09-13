@@ -1,8 +1,8 @@
-/*body {
+body {
   font-family: helvetica, sans-serif;
   background-color: lightblue;
 }
-.wrap {
+/*.wrap {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   text-align: center;
@@ -18,6 +18,7 @@ button {
   width: 100%;
   padding: 1em;
 }
+*/
 
 img {
   width: 50%;
@@ -27,4 +28,37 @@ article {
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 5px;
   margin: 1em;
+}
+
+/*table,
+th,
+td {
+  border: 1px solid black;
+}*/
+
+th,
+td {
+  text-align: left;
+  border-bottom: 1px solid black;
+  padding: 15px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  height: 50px;
+  background-color: white;
+}
+
+td {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+tr:hover {
+  background-color: #f5f5f5;
+}
+tr:nth-child(even) {
+  background-color: #f2f2f2;
 }
