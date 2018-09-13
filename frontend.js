@@ -48,6 +48,24 @@ function displayList(listOfStudents) {
     clone.querySelector("[data-middlename]").textContent = student.middleName;
     clone.querySelector("[data-lastname]").textContent = student.lastName;
 
+    //modal
+    const modal = document.querySelector("#modal_container");
+    //const modalBTN = document.querySelectorAll(".modalBTN");
+    //const closeBTN = document.querySelector(".closeBTN");
+
+    //clone.querySelector(".closeBTN").addEventListener("click", () => {
+    // console.log("hello");
+    //});
+    modal.addEventListener("click", () => (modal.style.display = "none"));
+    clone.querySelector(".modalBTN").addEventListener("click", () => {
+      console.log("modal pops up");
+      modal.style.display = "block";
+    });
+
+    //clone.querySelector("#closeBTN").addEventListener("click", () => {
+    // console.log("close button");
+    //});
+
     //append clone to table
     document.querySelector("table#student_list tbody").appendChild(clone);
   });
