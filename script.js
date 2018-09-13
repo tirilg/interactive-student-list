@@ -1,99 +1,85 @@
 "use strict";
 
+//empty array to add all students by push()
 let students = [];
 
-//fetch
+//fetch students
 function fetchStudents() {
   fetch("studentlist.json")
     .then(result => result.json())
     .then(createList);
 }
 
+//create a list of the students
 function createList(data) {
+  //get the student names
   const names = Object.values(data);
-  //console.log(names);
 
+  //template to apply for each student
   const studentTemp = {
     firstName: "", //insert first name
     middleName: "", //insert middle name
     lastName: "", //insert last name
     toString() {
-      //converts to string and adds the objects of what it is running through
+      //converts the object to a string, and returns a first name, middle name and last name
       return this.firstName + " " + this.middleName + " " + this.lastName;
     },
     splitName(fullName) {
-      //splits the name into first and last
-      const firstSpace = fullName.indexOf(" ");
-      const lastSpace = fullName.lastIndexOf(" ");
-      this.firstName = fullName.substring(0, firstSpace);
-      this.middleName = fullName.substring(firstSpace + 1, lastSpace);
-      this.lastName = fullName.substring(lastSpace + 1);
+      //splits full name into first, middle and last name
+      //when using substring(start, end), the end is up to but not including
+      const firstSpace = fullName.indexOf(" "); //find the index of the first space in the full name
+      const lastSpace = fullName.lastIndexOf(" "); //find the index of the last space in the full name
+      this.firstName = fullName.substring(0, firstSpace); //create a substring firstName by "splitting" the fullName from the first character at index (0)until the first space
+      this.middleName = fullName.substring(firstSpace + 1, lastSpace); //create a substring middleName by "splitting" the fullName from the firstSpace + every character until the last space
+      this.lastName = fullName.substring(lastSpace + 1); //create a substring lastName by "splitting" the fullName from the lastspace until the last character
     }
   };
 
   data.forEach(person => {
-    let temp = Object.create(studentTemp);
-    temp.splitName(person);
-    students.push(temp);
+    let temp = Object.create(studentTemp); //for each person(student), create a object from the template
+    temp.splitName(person); //apply the function inside the template to split name into first, middle and last
+    students.push(temp); //apply the function inside the template to push the object into the empty array students
   });
 
-  displayList(students);
-  console.table(students);
-  //const byFirstName = students.sort(sortByFirstName); //sort students by first name //add event to a button to sort
+  displayList(students); //display the list of all the students in the order they are fetched
+  console.table(students); //see table of students in the console log
 }
 
 function sortByFirstName() {
-  //function that sorts by first name by seeing if a (the first object) is smaller than b(the second object) (watch robot video)
+  //function that sorts by first name by seeing if a (the first object) is smaller than b(the second object)
   function byFirstName(a, b) {
     if (a.firstName < b.firstName) {
-      //if value of a.firstName is smaller than value of b.firstName (in this case the value of the letter), then move the name up (value of letters is smallest at A and biggest at Z)
+      //if value of a.firstName is smaller than value of b.firstName (in this case the value of the letter), then move the name to the top of the list (value of letters is smallest at A and biggest at Z)
       return -1; //means move it up
     } else {
       return 1; //means move it down
     }
   }
-  students.sort(byFirstName);
+  students.sort(byFirstName); //sort students by first name
 }
 
 function sortByMiddleName() {
-  //function that sorts by last name by seeing if a (the first object) is smaller than b(the second object) (watch robot video)
+  //function that sorts by middle name by seeing if a (the first object) is smaller than b(the second object)
   function byMiddleName(a, b) {
     if (a.middleName < b.middleName) {
-      return -1;
+      return -1; //move it up
     } else {
-      return 1;
+      return 1; //move it down
     }
   }
-  students.sort(byMiddleName);
+  students.sort(byMiddleName); //sort students by middle name
 }
 
 function sortByLastName() {
-  //function that sorts by last name by seeing if a (the first object) is smaller than b(the second object) (watch robot video)
+  //function that sorts by last name by seeing if a (the first object) is smaller than b(the second object) (watch robot video for visual example)
   function byLastName(a, b) {
     if (a.lastName < b.lastName) {
-      return -1;
+      return -1; //move it up
     } else {
-      return 1;
+      return 1; //move it down
     }
   }
-  students.sort(byLastName);
+  students.sort(byLastName); //sort students by last name
 }
 
-fetchStudents();
-
-/*const studentTemp = {
-  firstName: "", //insert first name
-  lastName: "", //insert last name
-  toString() {
-    //converts to string and adds the objects of what it is running through
-    return this.firstName + " " + this.lastName;
-  },
-  splitName(fullName) {
-    //splits the name into first and last
-    const firstSpace = fullName.indexOf(" ");
-    const lastSpace = fullName.lastIndexOf(" ");
-    this.firstName = fullName.substring(0, firstSpace);
-    this.middleName = fullName.substring(firstSpace + 1, lastSpace);
-    this.lastName = fullName.substring(lastSpace + 1);
-  }
-};*/
+fetchStudents(); //run the function fetchStudents
