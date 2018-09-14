@@ -39,16 +39,43 @@ function createList(data) {
     let temp = Object.create(studentTemp); //for each person(student), create a object from the template
     temp.splitName(person); //apply the function inside the template to split name into first, middle and last
     students.push(temp); //apply the function inside the template to push the object into the empty array students
-    temp.id = students.length;
-    //assign this student a unique id
+    temp.id = generateUUID(); //="" + students.length; //assign this student a unique id
   });
 
   displayList(students); //display the list of all the students in the order they are fetched
   console.table(students); //see table of students in the console log
 }
 
+//https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript/8809472#8809472
+function generateUUID() {
+  //function to generate unique id. makes a new one every time the page refrehes to never experience the same id being uses twice
+  let d = new Date().getTime();
+  if (
+    typeof performance !== "undefined" &&
+    typeof performance.now === "function"
+  ) {
+    d += performance.now(); //use high-precision timer if available
+  }
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c) {
+    let r = (d + Math.random() * 16) % 16 | 0;
+    d = Math.floor(d / 16);
+    return (c === "x" ? r : (r & 0x3) | 0x8).toString(16);
+  });
+}
+
 function deleteStudent(studentId) {
   //find the index of the student with studentId
+  const index = students.findIndex(findStudent);
+  console.log("found index: " + index);
+  students.splice(index, 1);
+
+  function findStudent(student) {
+    if (student.id === studentId) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
 
 function sortByFirstName() {
