@@ -17,10 +17,9 @@ function initFrontend() {
     .querySelector("button#sort_last") //get last name button
     .addEventListener("click", clickedSortLastname); //run function when  button is clicked
 
-  //register table clicks
   document
-    .querySelector("table#student_list")
-    .addEventListener("click", clickedTable);
+    .querySelector("table#student_list") //get the table
+    .addEventListener("click", clickedTable); //run function when table is clicked
 }
 
 function clickedTable(event) {
@@ -29,8 +28,9 @@ function clickedTable(event) {
 
   const clicked = event.target;
   if (clicked.tagName === "BUTTON") {
-    //if more buttons, check which kind was pressed (class)
-    clickedDelete(clicked);
+    if (clicked.classList.contains("deleteBTN")) {
+      clickedDelete(clicked);
+    }
   }
 }
 
@@ -41,6 +41,12 @@ function clickedDelete(deleteButton) {
   while (tr.tagName !== "TR") {
     tr = tr.parentElement;
   }
+
+  //find the studentId
+  const studentId = tr.dataset.studentId;
+  console.log(studentId);
+
+  deleteStudent(studentId);
   //remove that <tr>
   tr.remove();
 }
@@ -76,6 +82,7 @@ function displayList(listOfStudents) {
     clone.querySelector("[data-middlename]").textContent = student.middleName; //display middle name
     clone.querySelector("[data-lastname]").textContent = student.lastName;
     //display last name
+    clone.querySelector("tr").dataset.studentId = student.id; //add studentId to the <tr>
 
     //info button modal
     const modal = document.querySelector("#modal_container"); //get modal

@@ -39,10 +39,16 @@ function createList(data) {
     let temp = Object.create(studentTemp); //for each person(student), create a object from the template
     temp.splitName(person); //apply the function inside the template to split name into first, middle and last
     students.push(temp); //apply the function inside the template to push the object into the empty array students
+    temp.id = students.length;
+    //assign this student a unique id
   });
 
   displayList(students); //display the list of all the students in the order they are fetched
   console.table(students); //see table of students in the console log
+}
+
+function deleteStudent(studentId) {
+  //find the index of the student with studentId
 }
 
 function sortByFirstName() {
