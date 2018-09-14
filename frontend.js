@@ -16,8 +16,34 @@ function initFrontend() {
   document
     .querySelector("button#sort_last") //get last name button
     .addEventListener("click", clickedSortLastname); //run function when  button is clicked
+
+  //register table clicks
+  document
+    .querySelector("table#student_list")
+    .addEventListener("click", clickedTable);
 }
 
+function clickedTable(event) {
+  console.log("clicked table");
+  console.log(event.target);
+
+  const clicked = event.target;
+  if (clicked.tagName === "BUTTON") {
+    //if more buttons, check which kind was pressed (class)
+    clickedDelete(clicked);
+  }
+}
+
+function clickedDelete(deleteButton) {
+  console.log(deleteButton);
+  //find the <tr> that has this deleteButton inside it
+  let tr = deleteButton.parentElement;
+  while (tr.tagName !== "TR") {
+    tr = tr.parentElement;
+  }
+  //remove that <tr>
+  tr.remove();
+}
 //function for sorting when clicking first name button
 function clickedSortFirstname() {
   sortByFirstName(); //run function that sorts the students by first name
@@ -51,7 +77,7 @@ function displayList(listOfStudents) {
     clone.querySelector("[data-lastname]").textContent = student.lastName;
     //display last name
 
-    //modal
+    //info button modal
     const modal = document.querySelector("#modal_container"); //get modal
     clone.querySelector(".infoBTN").addEventListener("click", () => {
       modal.style.display = "block"; //get info button and when clicked, show modal
