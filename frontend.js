@@ -22,12 +22,13 @@ function initFrontend() {
     .addEventListener("click", clickedTable); //run function when table is clicked
 }
 
+//function for when the table is clicked, an event should happen
 function clickedTable(event) {
-  console.log("clicked table");
-  console.log(event.target);
+  //console.log("clicked table");
+  //console.log(event.target);
 
   const clicked = event.target;
-  if (clicked.tagName === "BUTTON") {
+  if (clicked.tagName === "IMG") {
     if (clicked.classList.contains("deleteBTN")) {
       clickedDelete(clicked);
     }
@@ -47,9 +48,51 @@ function clickedDelete(deleteButton) {
   console.log(studentId);
 
   deleteStudent(studentId);
+
+  //animate the <tr> out
+  animateDelete(tr);
   //remove that <tr>
-  tr.remove();
+  //tr.remove();
 }
+
+function animateDelete(tr) {
+  tr.style.transform = "translateX(-105%)";
+  tr.style.transition = "transform 1s ease";
+
+  //tr.classList.add("fly_out");
+
+  const rect = tr.getBoundingClientRect();
+
+  tr.addEventListener("transitionend", function() {
+    let nextSibling = tr.nextElementSibling;
+
+    if (nextSibling !== null) {
+      nextSibling.addEventListener("transitionend", function() {
+        //reset all the translateY
+        let nextTr = tr.nextElementSibling;
+        while (nextTr !== null) {
+          nextTr.style.transform = "translateY(0)";
+          nextTr.style.transition = "transform 0s";
+
+          nextTr = nextTr.nextElementSibling;
+        }
+
+        //remove tr
+        tr.remove();
+      });
+
+      while (nextSibling !== null) {
+        nextSibling.style.transform = "translateY(-" + rect.height + "px)";
+        nextSibling.style.transition = "transform 0.5s";
+        nextSibling = nextSibling.nextElementSibling;
+      }
+    } else {
+      //remove tr
+      tr.remove();
+    }
+  });
+}
+
 //function for sorting when clicking first name button
 function clickedSortFirstname() {
   sortByFirstName(); //run function that sorts the students by first name

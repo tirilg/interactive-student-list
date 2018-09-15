@@ -47,9 +47,9 @@ function createList(data) {
 }
 
 //https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript/8809472#8809472
+//function to generate unique id. makes a new one every time the page refrehes to never experience the same id being uses twice
 function generateUUID() {
-  //function to generate unique id. makes a new one every time the page refrehes to never experience the same id being uses twice
-  let d = new Date().getTime();
+  let d = new Date().getTime(); //there is no way i can explain what is happening here so just look at the link above
   if (
     typeof performance !== "undefined" &&
     typeof performance.now === "function"
@@ -63,12 +63,13 @@ function generateUUID() {
   });
 }
 
+//function to delete the student with the right id
 function deleteStudent(studentId) {
-  //find the index of the student with studentId
-  const index = students.findIndex(findStudent);
-  console.log("found index: " + index);
-  students.splice(index, 1);
+  const index = students.findIndex(findStudent); //find the index of the student with studentId
+  //console.log("found index: " + index); //console log the index of the specific student
+  students.splice(index, 1); //remove the "1" student from the index pressed
 
+  //function to find student
   function findStudent(student) {
     if (student.id === studentId) {
       return true;

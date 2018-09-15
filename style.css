@@ -27,9 +27,22 @@ button {
   cursor: pointer;
 }
 
-.infoBTN {
-  border: solid 1px lightgray;
+.infoBTN,
+.deleteBTN {
+  background-color: Transparent;
+  border: none;
 }
+
+.infoBTN,
+.deleteBTN {
+  width: 10%;
+  float: right;
+}
+
+.deleteBTN {
+  width: 10%;
+}
+
 #sorting button {
   width: 20%;
   padding: 1em;
@@ -67,12 +80,14 @@ td {
 tr:hover {
   background-color: lightgray;
 }
+/*
 tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 tr:nth-child(even):hover {
   background-color: lightgray;
 }
+*/
 /*        MODAL      */
 img {
   width: 40%;
@@ -93,6 +108,7 @@ img {
   width: 100vw;
   height: 100vh;
 
+  z-index: 3;
   display: flex;
   display: none;
   justify-content: center;
@@ -115,3 +131,22 @@ img {
 #closebutton {
   cursor: pointer;
 }
+
+/*     ANIMATION     */
+
+/*.fly_out {
+  animation-name: fly_out_kf;
+  animation-duration: 1s;
+  animation-iteration-count: forwards;
+}
+
+@keyframes fly_out_kf {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-105%);
+    transition: transform 1s;
+  }
+}*/
